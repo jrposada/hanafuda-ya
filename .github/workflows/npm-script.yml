@@ -12,13 +12,14 @@ on:
 
 jobs:
   npm-run:
+    name: 'NPM Run "${{inputs.script}}"'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           cache: npm
-          node-version-file: '.nvmrc'
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install
