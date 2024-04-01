@@ -22,9 +22,8 @@ jobs:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org
 
-      - name: Install
+      - name: Install dependencies
         run: |
-          npm --version
           npm ci
 
       - name: Run Script
