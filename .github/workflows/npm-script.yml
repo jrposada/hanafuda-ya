@@ -1,0 +1,31 @@
+# TODO: move to other repo
+
+name: NPM Script
+
+on:
+  workflow_call:
+    inputs:
+      script:
+        required: true
+        type: string
+        description: 'NPM script to run. Value will be used like `npm run <value>`'
+
+jobs:
+  npm-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache-dependency-path: 'package-lock.json'
+          cache: npm
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install
+        run: |
+          'npm ci'
+
+      - name: Run Script
+        run: |
+          npm run ${{inputs.script}}

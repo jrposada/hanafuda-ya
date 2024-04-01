@@ -1,0 +1,21 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  lint-eslint:
+    name: 'Lint: ESLint'
+    uses: ./.github/workflows/npm-script
+    with:
+      script: lint:eslint
+
+  lint-prettier:
+    name: 'Lint: Prettier'
+    uses: ./.github/workflows/npm-script
+    with:
+      script: lint:prettier
