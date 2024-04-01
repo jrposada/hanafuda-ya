@@ -10,22 +10,9 @@ on:
 jobs:
   lint-eslint:
     name: 'Lint: ESLint'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          cache: npm
-          node-version-file: '.nvmrc'
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install
-        run: |
-          'npm ci'
-
-      - name: Run Script
-        run: |
-          npm run lint:eslint
+    uses: ./.github/workflows/npm-script.yml
+    with:
+      script: lint:eslint
 
   lint-prettier:
     name: 'Lint: Prettier'

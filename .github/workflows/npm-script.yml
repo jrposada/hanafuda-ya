@@ -23,6 +23,7 @@ jobs:
 
       - name: Install
         run: |
+          'npm --version'
           'npm ci'
 
       - name: Run Script
