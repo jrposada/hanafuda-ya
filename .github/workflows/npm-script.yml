@@ -8,24 +8,24 @@ on:
       script:
         required: true
         type: string
-        description: 'NPM script to run. Value will be used like `npm run <value>`'
+        description: NPM script to run. Value will be used like `npm run <value>`
 
 jobs:
   npm-run:
-    name: 'NPM Run "${{inputs.script}}"'
+    name: NPM Run "${{inputs.script}}"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           cache: npm
-          node-version: 20
-          registry-url: 'https://registry.npmjs.org'
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
 
       - name: Install
         run: |
-          'npm --version'
-          'npm ci'
+          npm --version
+          npm ci
 
       - name: Run Script
         run: |
