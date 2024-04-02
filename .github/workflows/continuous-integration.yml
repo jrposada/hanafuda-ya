@@ -19,3 +19,9 @@ jobs:
     uses: ./.github/workflows/npm-script.yml
     with:
       script: lint:prettier
+
+  test-unit:
+    name: 'Test: Unit'
+    uses: ./.github/workflows/npm-script.yml
+    with:
+      script: coverage
