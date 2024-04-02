@@ -1,0 +1,39 @@
+# TODO: move to other repo
+
+name: Conventional Commits
+
+on:
+  workflow_call:
+    inputs:
+      cache-dependency-path:
+        default: './package-lock.json'
+        type: string
+        description: 'Used to specify the path to a dependency file: package-lock.json, yarn.lock, etc. It will generate hash from the target file for primary key. It works only If cache is specified. Supports wildcards or a list of file names for caching multiple dependencies.'
+
+jobs:
+  lint:
+    name: Lint Commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
+          cache-dependency-path: ${{inputs.cache-dependency-path}}
+
+      - name: Install commitlint
+        run: |
+          npm install commitlint@latest
+
+      - name: Validate current commit (last commit) with commitlint
+        if: github.event_name == 'push'
+        run: npx commitlint --last --verbose
+
+      - name: Validate PR commits with commitlint
+        if: github.event_name == 'pull_request'
+        run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
