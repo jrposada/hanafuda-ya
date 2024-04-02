@@ -20,6 +20,10 @@ jobs:
     with:
       script: lint:prettier
 
+  lint-commits:
+    name: 'Lint: Commits'
+    uses: ./.github/workflows/conventional-commits.yml
+
   test-unit:
     name: 'Test: Unit'
     uses: ./.github/workflows/npm-script.yml
