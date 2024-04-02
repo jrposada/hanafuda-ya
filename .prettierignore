@@ -1,4 +1,7 @@
+.editorconfig
 .gitignore
+.npmignore
 .prettierignore
+*.svg
 /.husky
 /.vscode
