@@ -1,9 +1,13 @@
 module.exports = {
     env: {
-        node: true,
-        es2021: true,
+        es2020: true,
+        browser: true,
     },
-    extends: 'eslint:recommended',
+    extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+    ],
     overrides: [
         {
             env: {
@@ -18,11 +22,19 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+        ecmaFeatures: {
+            jsx: true, // Enable JSX parsing
+        },
     },
+    ignorePatterns: ['dist/**/*', 'coverage/**/*'],
     rules: {
-        indent: ['error', 4],
         'linebreak-style': ['error', 'unix'],
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
+    },
+    settings: {
+        react: {
+            version: 'detect', // React version. "detect" automatically picks the version you have installed.
+        },
     },
 };
