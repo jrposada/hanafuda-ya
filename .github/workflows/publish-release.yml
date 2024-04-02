@@ -1,0 +1,26 @@
+name: Publish Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-release:
+    name: Publish Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Semantic Release
+        uses: codfish/semantic-release-action@v2
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Result
+        run: |
+          if [[ $NEW_RELEASE_PUBLISHED == 'true' ]]; then
+            echo "v$RELEASE_VERSION published";
+          else
+            echo "No release published";
+          fi
