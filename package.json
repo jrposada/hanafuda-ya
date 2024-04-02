@@ -4,32 +4,36 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
+    "coverage": "vitest run --coverage",
     "dev": "vite",
-    "lint-staged": "lint-staged",
     "lint:eslint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:prettier": "prettier . --check",
     "lint": "npm run lint:eslint && npm run lint:prettier",
+    "prepare": "husky",
     "preview": "vite preview",
-    "postinstall": "husky install"
+    "test": "vitest"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.64",
-    "@types/react-dom": "^18.2.21",
-    "@typescript-eslint/eslint-plugin": "^7.1.1",
-    "@typescript-eslint/parser": "^7.1.1",
-    "@vitejs/plugin-react-swc": "^3.5.0",
+    "@testing-library/react": "^14.2.2",
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.23",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "@vitest/coverage-v8": "^1.4.0",
     "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.2",
+    "husky": "^9.0.11",
+    "jsdom": "^24.0.0",
     "prettier": "^3.2.5",
-    "typescript": "^5.2.2",
-    "vite": "^5.1.6"
+    "typescript": "^5.4.3",
+    "vite": "^5.2.7",
+    "vitest": "^1.4.0"
   },
   "repository": {
     "email": "jrposada.dev@gmail.com",
