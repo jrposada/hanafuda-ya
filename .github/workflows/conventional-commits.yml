@@ -26,12 +26,6 @@ jobs:
           registry-url: https://registry.npmjs.org
           cache-dependency-path: ${{inputs.cache-dependency-path}}
 
-      # - name: Print versions
-      #   run: |
-      #     node --version
-      #     npm --version
-      #     npx commitlint --version
-
       - name: Install commitlint
         run: |
           npm install commitlint@latest
