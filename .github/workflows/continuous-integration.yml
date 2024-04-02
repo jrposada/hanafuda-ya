@@ -24,6 +24,15 @@ jobs:
     name: 'Lint: Commits'
     uses: ./.github/workflows/conventional-commits.yml
 
+  lint-pr:
+    name: 'Lint: PR title'
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   test-unit:
     name: 'Test: Unit'
     uses: ./.github/workflows/npm-script.yml
